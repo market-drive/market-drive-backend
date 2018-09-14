@@ -1,0 +1,227 @@
+{"purchace": [ 
+	{ 	
+		"user-id": 1334466,
+		"purchace-id": 7,
+		"date" : "27.06.2018 14:12:34",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 30,
+				"quantity" : 1
+			}, 
+			"2" : {
+				"product-id" : 134,
+				"quantity" : 2
+			},
+			"3" : {
+				"product-id" : 41,
+				"quantity" : 1
+			},
+			"4" : {
+				"product-id" : 311,
+				"quantity" : 1
+			},
+			"5" : {
+				"product-id" : 123,
+				"quantity" : 2
+			},
+			"6" : {
+				"product-id" : 233,
+				"quantity" : 1
+			}   
+		} 
+	},
+	{
+		"user-id": 1334466,
+		"purchace-id": 6,
+		"date" : "22.06.2018 12:20:21",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 99,
+				"quantity" : 1
+			}, 
+			"2" : {
+				"product-id" : 134,
+				"quantity" : 2
+			},
+			"3" : {
+				"product-id" : 64,
+				"quantity" : 1
+			},
+			"4" : {
+				"product-id" : 345,
+				"quantity" : 1
+			},
+			"5" : {
+				"product-id" : 123,
+				"quantity" : 2
+			},
+			"6" : {
+				"product-id" : 233,
+				"quantity" : 1
+			},
+			"7" : {
+				"product-id" : 11,
+				"quantity" : 1
+			},
+			"8" : {
+				"product-id" : 328,
+				"quantity" : 2
+			}
+		} 
+	},
+
+	{
+		"user-id": 1334466,
+		"purchace-id": 5,
+		"date" : "17.06.2018 18:30:33",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 200,
+				"quantity" : 1
+			}, 
+			"2" : {
+				"product-id" : 130,
+				"quantity" : 2
+			},
+			"3" : {
+				"product-id" : 464,
+				"quantity" : 1
+			},
+			"4" : {
+				"product-id" : 5,
+				"quantity" : 1
+			},
+			"5" : {
+				"product-id" : 13,
+				"quantity" : 3
+			}
+		}
+	},
+	{
+		"user-id": 1334466,
+		"purchace-id": 4,
+		"date" : "15.06.2018 11:11:47",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 391,
+				"quantity" : 1
+			}, 
+			"2" : {
+				"product-id" : 149,
+				"quantity" : 3
+			},
+			"3" : {
+				"product-id" : 271,
+				"quantity" : 2
+			},
+			"4" : {
+				"product-id" : 306,
+				"quantity" : 1
+			},
+			"5" : {
+				"product-id" : 366,
+				"quantity" : 2
+			},
+			"6" : {
+				"product-id" : 422,
+				"quantity" : 1
+			}
+		}
+	},
+	{
+		"user-id": 1334466,
+		"purchace-id": 2,
+		"date" : "14.06.2018 21:10:17",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 393,
+				"quantity" : 2
+			}, 
+			"2" : {
+				"product-id" : 76,
+				"quantity" : 1
+			},
+			"3" : {
+				"product-id" : 456,
+				"quantity" : 1
+			},
+			"4" : {
+				"product-id" : 400,
+				"quantity" : 2
+			},
+			"5" : {
+				"product-id" : 17,
+				"quantity" : 3
+			},
+			"6" : {
+				"product-id" : 19,
+				"quantity" : 1
+			},
+			"7" : {
+				"product-id" : 135,
+				"quantity" : 2
+			},
+			"8" : {
+				"product-id" : 464,
+				"quantity" : 1
+			},
+			"9" : {
+				"product-id" : 242,
+				"quantity" : 2
+			}
+		}
+	},
+	{
+		"user-id": 1334466,
+		"purchace-id": 1,
+		"date" : "14.06.2018 21:10:17",
+		"store": {
+			"store-id": 325,
+			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
+			"store-map": "URL"
+		},
+		"purchace": {
+			"1" : {
+				"product-id" : 49,
+				"quantity" : 2
+			}, 
+			"2" : {
+				"product-id" : 36,
+				"quantity" : 1
+			},
+			"3" : {
+				"product-id" : 182,
+				"quantity" : 2
+			},
+			"4" : {
+				"product-id" : 448,
+				"quantity" : 1
+			}
+		}
+	}
+]}

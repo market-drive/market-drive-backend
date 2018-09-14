@@ -32,4 +32,12 @@ public class StorageDao {
         }
     }
 
+    public String getPurchases() {
+        InputStream is = context.getResourceAsStream("/WEB-INF/purchases.json");
+        try {
+            return IOUtils.toString(is, "UTF-8");
+        } catch (IOException e) {
+            return "";
+        }
+    }
 }

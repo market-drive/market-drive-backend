@@ -30,6 +30,14 @@ public class Api {
         return Response.status(Response.Status.OK).entity(json).build();
     }
 
+    @GET
+    @Path("purchases")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response getPurchases() {
+        String json = StorageDao.getInstance(context).getPurchases();
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
+
     @POST
     @Path("register")
     public Response register(String json) {
@@ -55,7 +63,6 @@ public class Api {
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
     }
-
 
 
 }
