@@ -42,4 +42,20 @@ public class Api {
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
     }
+
+    @POST
+    @Path("login")
+    public Response login(String json) {
+        User user = gson.fromJson(json, User.class);
+        //get users in sql
+
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setId(123456);
+        String resultStr = gson.toJson(result);
+        return Response.status(Response.Status.OK).entity(resultStr).build();
+    }
+
+
+
 }
