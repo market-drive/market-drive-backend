@@ -2,6 +2,7 @@ package ua.ithillel.marketdrive.api;
 
 import com.google.gson.Gson;
 import ua.ithillel.marketdrive.dao.StorageDao;
+import ua.ithillel.marketdrive.dao.UserDao;
 import ua.ithillel.marketdrive.model.Basket;
 import ua.ithillel.marketdrive.model.Result;
 import ua.ithillel.marketdrive.model.User;
@@ -51,7 +52,12 @@ public class Api {
     @Path("register")
     public Response register(String json) {
         User user = gson.fromJson(json, User.class);
+        UserDao userDao = new UserDao();
+        userDao.insert(user);
         //save users in sql
+
+        //user = userDao.getByEmailPassword(user.email, user.password);
+        //id = user.getId();
 
         Result result = new Result();
         result.setSuccess(true);
