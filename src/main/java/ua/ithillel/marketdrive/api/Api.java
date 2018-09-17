@@ -69,7 +69,7 @@ public class Api {
     @POST
     @Path("register")
     public Response register() {
-        User user = new User("name", "password", "email");
+        User user = new User("second", "dddddd", "ddddddddddd");
         UserDao userDao = new UserDao();
         userDao.insert(user);
         //save users in sql

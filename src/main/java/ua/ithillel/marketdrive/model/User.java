@@ -16,13 +16,8 @@ public class User {
     @Column(name = "_id")
     private int id;
 
-    @Column(name = "name", nullable = false, unique = false)
     private String name;
-
-    @Column(name = "_id")
     private String password;
-
-    @Column(name = "_id")
     private String email;
 
     public User() {
