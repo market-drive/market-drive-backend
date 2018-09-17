@@ -68,8 +68,8 @@ public class Api {
 
     @POST
     @Path("register")
-    public Response register() {
-        User user = new User("second", "dddddd", "ddddddddddd");
+    public Response register(String json) {
+        User user = gson.fromJson(json, User.class);
         UserDao userDao = new UserDao();
         userDao.insert(user);
         //save users in sql
@@ -79,7 +79,7 @@ public class Api {
 
         Result result = new Result();
         result.setSuccess(true);
-        result.setId(123456);
+        result.setId(user.getId());
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
     }
