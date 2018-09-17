@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import ua.ithillel.marketdrive.model.User;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -63,12 +64,16 @@ public class UserDao {
     }
 
     public User getByName(String name) {
+        User result = null;
         try (Session session = sessionFactory.openSession()) {
-            return session
-                    .createQuery("FROM Student WHERE name = :name ", User.class)
+            result = session
+                    .createQuery("FROM User WHERE name = :name ", User.class)
                     .setParameter("name", name)
                     .getSingleResult();
+        } catch (NoResultException e) {
+            e.printStackTrace();
         }
+        return result;
     }
 
     public List<User> getByAge(int from, int to) {

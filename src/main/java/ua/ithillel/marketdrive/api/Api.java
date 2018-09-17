@@ -45,43 +45,25 @@ public class Api {
         return Response.status(Response.Status.OK).entity(json).build();
     }
 
-//    @POST
-//    @Path("register")
-//    public Response register(@FormParam("name") String name,
-//                             @FormParam("password") String password,
-//                             @FormParam("email") String email) {
-//        User user = new User(name, password, email);
-//        UserDao userDao = new UserDao();
-//        userDao.insert(user);
-//        //save users in sql
-//
-//        //user = userDao.getByEmailPassword(user.email, user.password);
-//        //id = user.getId();
-//
-//        Result result = new Result();
-//        result.setSuccess(true);
-//        result.setId(123456);
-//        String resultStr = gson.toJson(result);
-//        return Response.status(Response.Status.OK).entity(resultStr).build();
-//    }
-
-
     @POST
     @Path("register")
     public Response register(String json) {
         User user = gson.fromJson(json, User.class);
         UserDao userDao = new UserDao();
+        if(userDao.getByName(user.getName()) != null) {
+            Result result = new Result();
+            result.setSuccess(false);
+            result.setReason("user with the name " + user.getName() + " is already exists");
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
+        } else {
         userDao.insert(user);
-        //save users in sql
-
-        //user = userDao.getByEmailPassword(user.email, user.password);
-        //id = user.getId();
-
         Result result = new Result();
         result.setSuccess(true);
         result.setId(user.getId());
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
+        }
     }
 
     @POST
