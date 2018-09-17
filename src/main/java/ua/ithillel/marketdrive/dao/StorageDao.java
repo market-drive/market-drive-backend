@@ -40,4 +40,23 @@ public class StorageDao {
             return "";
         }
     }
+
+    public String getProductsFull() {
+        InputStream is = context.getResourceAsStream("/WEB-INF/products_full.json");
+        try {
+            return IOUtils.toString(is, "UTF-8");
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+    public String getPurchasesFull() {
+        InputStream is = context.getResourceAsStream("/WEB-INF/purchases_full.json");
+        try {
+            return IOUtils.toString(is, "UTF-8");
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
 }
