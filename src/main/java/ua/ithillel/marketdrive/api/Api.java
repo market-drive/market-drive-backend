@@ -6,6 +6,7 @@ import ua.ithillel.marketdrive.dao.UserDao;
 import ua.ithillel.marketdrive.model.Basket;
 import ua.ithillel.marketdrive.model.Result;
 import ua.ithillel.marketdrive.model.User;
+import ua.ithillel.marketdrive.model.UserWithEncodedPassword;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -49,18 +50,22 @@ public class Api {
     @Path("register")
     public Response register(String json) {
         User user = gson.fromJson(json, User.class);
+        UserWithEncodedPassword userWithEncodedPassword = new UserWithEncodedPassword(
+                user.getName(),
+                user.getPassword().hashCode(),
+                user.getEmail());
         UserDao userDao = new UserDao();
-        if(userDao.getByName(user.getName()) != null) {
+        if(userDao.getByName(userWithEncodedPassword.getName()) != null) {
             Result result = new Result();
             result.setSuccess(false);
             result.setReason("user with the name " + user.getName() + " is already exists");
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
         } else {
-        userDao.insert(user);
+        userDao.insert(userWithEncodedPassword);
         Result result = new Result();
         result.setSuccess(true);
-        result.setId(user.getId());
+        result.setId(userWithEncodedPassword.getId());
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
         }

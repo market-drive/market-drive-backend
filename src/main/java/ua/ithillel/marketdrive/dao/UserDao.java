@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import ua.ithillel.marketdrive.model.User;
+import ua.ithillel.marketdrive.model.UserWithEncodedPassword;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -22,10 +23,10 @@ public class UserDao {
         sessionFactory.close();
     }
 
-    public void insert(User user) {
+    public void insert(UserWithEncodedPassword userWithEncodedPassword) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(user);
+            session.save(userWithEncodedPassword);
             transaction.commit();
         }
     }
@@ -63,11 +64,11 @@ public class UserDao {
         }
     }
 
-    public User getByName(String name) {
-        User result = null;
+    public UserWithEncodedPassword getByName(String name) {
+        UserWithEncodedPassword result = null;
         try (Session session = sessionFactory.openSession()) {
             result = session
-                    .createQuery("FROM User WHERE name = :name ", User.class)
+                    .createQuery("FROM UserWithEncodedPassword WHERE name = :name ", UserWithEncodedPassword.class)
                     .setParameter("name", name)
                     .getSingleResult();
         } catch (NoResultException e) {

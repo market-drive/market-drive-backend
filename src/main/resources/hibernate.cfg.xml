@@ -18,7 +18,7 @@
 
         <property name="hibernate.connection.password">tomcat123456</property>
 
-        <mapping class="ua.ithillel.marketdrive.model.User"/>
+        <mapping class="ua.ithillel.marketdrive.model.UserWithEncodedPassword"/>
 
     </session-factory>
 
