@@ -8,10 +8,7 @@ import ua.ithillel.marketdrive.model.Result;
 import ua.ithillel.marketdrive.model.User;
 
 import javax.servlet.ServletContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -48,10 +45,31 @@ public class Api {
         return Response.status(Response.Status.OK).entity(json).build();
     }
 
+//    @POST
+//    @Path("register")
+//    public Response register(@FormParam("name") String name,
+//                             @FormParam("password") String password,
+//                             @FormParam("email") String email) {
+//        User user = new User(name, password, email);
+//        UserDao userDao = new UserDao();
+//        userDao.insert(user);
+//        //save users in sql
+//
+//        //user = userDao.getByEmailPassword(user.email, user.password);
+//        //id = user.getId();
+//
+//        Result result = new Result();
+//        result.setSuccess(true);
+//        result.setId(123456);
+//        String resultStr = gson.toJson(result);
+//        return Response.status(Response.Status.OK).entity(resultStr).build();
+//    }
+
+
     @POST
     @Path("register")
-    public Response register(String json) {
-        User user = gson.fromJson(json, User.class);
+    public Response register() {
+        User user = new User("name", "password", "email");
         UserDao userDao = new UserDao();
         userDao.insert(user);
         //save users in sql
