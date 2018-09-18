@@ -14,7 +14,6 @@ public class Basket {
     private int purchaceId;
     private Date date = new Date();
     private Store store;
-    private List<Purchace> purchace = new ArrayList<>();
 
     public Basket() {
     }
@@ -54,14 +53,6 @@ public class Basket {
 
     public void setStore(Store store) {
         this.store = store;
-    }
-
-    public List<Purchace> getPurchace() {
-        return purchace;
-    }
-
-    public void setPurchace(List<Purchace> purchace) {
-        this.purchace = purchace;
     }
 
 }

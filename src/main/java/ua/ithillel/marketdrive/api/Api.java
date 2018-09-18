@@ -6,12 +6,10 @@ import ua.ithillel.marketdrive.dao.UserDao;
 import ua.ithillel.marketdrive.model.Basket;
 import ua.ithillel.marketdrive.model.Result;
 import ua.ithillel.marketdrive.model.User;
+import ua.ithillel.marketdrive.model.UserWithEncodedPassword;
 
 import javax.servlet.ServletContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -52,31 +50,48 @@ public class Api {
     @Path("register")
     public Response register(String json) {
         User user = gson.fromJson(json, User.class);
+        UserWithEncodedPassword userWithEncodedPassword = new UserWithEncodedPassword(
+                user.getName(),
+                user.getPassword().hashCode(),
+                user.getEmail());
         UserDao userDao = new UserDao();
-        userDao.insert(user);
-        //save users in sql
-
-        //user = userDao.getByEmailPassword(user.email, user.password);
-        //id = user.getId();
-
         Result result = new Result();
+        if(userDao.getByName(userWithEncodedPassword.getName()) != null) {
+            result.setSuccess(false);
+            result.setReason("user with the name " + user.getName() + " is already exists");
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
+        } else {
+        userDao.insert(userWithEncodedPassword);
         result.setSuccess(true);
-        result.setId(123456);
+        result.setId(userWithEncodedPassword.getId());
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.OK).entity(resultStr).build();
+        }
     }
 
     @POST
     @Path("login")
     public Response login(String json) {
         User user = gson.fromJson(json, User.class);
-        //get users in sql
-
+        UserWithEncodedPassword userWithEncodedPassword = new UserWithEncodedPassword(
+                user.getName(),
+                user.getPassword().hashCode(),
+                user.getEmail());
+        UserDao userDao = new UserDao();
         Result result = new Result();
-        result.setSuccess(true);
-        result.setId(123456);
+        if(userDao.getByName(userWithEncodedPassword.getName()) != null &&
+                user.getPassword().hashCode() == userDao.getByName(userWithEncodedPassword.getName()).getPasswordHashCode()) {
+            result.setSuccess(true);
+            result.setId(userDao.getByName(userWithEncodedPassword.getName()).getId());
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.OK).entity(resultStr).build();
+        }
+
+        result.setSuccess(false);
+        result.setReason("incorrect username or password");
         String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.OK).entity(resultStr).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(resultStr).build();
     }
 
     @POST
