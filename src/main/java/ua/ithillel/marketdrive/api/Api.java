@@ -55,15 +55,14 @@ public class Api {
                 user.getPassword().hashCode(),
                 user.getEmail());
         UserDao userDao = new UserDao();
+        Result result = new Result();
         if(userDao.getByName(userWithEncodedPassword.getName()) != null) {
-            Result result = new Result();
             result.setSuccess(false);
             result.setReason("user with the name " + user.getName() + " is already exists");
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
         } else {
         userDao.insert(userWithEncodedPassword);
-        Result result = new Result();
         result.setSuccess(true);
         result.setId(userWithEncodedPassword.getId());
         String resultStr = gson.toJson(result);
@@ -75,13 +74,24 @@ public class Api {
     @Path("login")
     public Response login(String json) {
         User user = gson.fromJson(json, User.class);
-        //get users in sql
-
+        UserWithEncodedPassword userWithEncodedPassword = new UserWithEncodedPassword(
+                user.getName(),
+                user.getPassword().hashCode(),
+                user.getEmail());
+        UserDao userDao = new UserDao();
         Result result = new Result();
-        result.setSuccess(true);
-        result.setId(123456);
+        if(userDao.getByName(userWithEncodedPassword.getName()) != null &&
+                user.getPassword().hashCode() == userDao.getByName(userWithEncodedPassword.getName()).getPasswordHashCode()) {
+            result.setSuccess(true);
+            result.setId(userDao.getByName(userWithEncodedPassword.getName()).getId());
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.OK).entity(resultStr).build();
+        }
+
+        result.setSuccess(false);
+        result.setReason("incorrect username or password");
         String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.OK).entity(resultStr).build();
+        return Response.status(Response.Status.NOT_FOUND).entity(resultStr).build();
     }
 
     @POST
