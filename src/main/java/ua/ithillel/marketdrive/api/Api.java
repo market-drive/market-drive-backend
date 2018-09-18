@@ -91,7 +91,7 @@ public class Api {
         result.setSuccess(false);
         result.setReason("incorrect username or password");
         String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.NOT_FOUND).entity(resultStr).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(resultStr).build();
     }
 
     @POST
