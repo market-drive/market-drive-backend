@@ -64,6 +64,19 @@ public class UserDao {
         }
     }
 
+    public UserWithEncodedPassword getByEmail(String email) {
+        UserWithEncodedPassword result = null;
+        try (Session session = sessionFactory.openSession()) {
+            result = session
+                    .createQuery("FROM UserWithEncodedPassword WHERE email = :email ", UserWithEncodedPassword.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public UserWithEncodedPassword getByName(String name) {
         UserWithEncodedPassword result = null;
         try (Session session = sessionFactory.openSession()) {

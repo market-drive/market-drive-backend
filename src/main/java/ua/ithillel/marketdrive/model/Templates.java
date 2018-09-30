@@ -1,5 +1,7 @@
 package ua.ithillel.marketdrive.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,9 @@ public class Templates {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    @SerializedName("user_id")
+    @Column(name = "user_id")
+    private int userId;
 
     public Templates() {
     }

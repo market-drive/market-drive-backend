@@ -54,9 +54,9 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if (userDao.getByName(userWithEncodedPassword.getName()) != null) {
+        if (userDao.getByEmail(userWithEncodedPassword.getEmail()) != null) {
             result.setSuccess(false);
-            result.setReason("user with the name " + user.getName() + " is already exists");
+            result.setReason("Пользователь с таким e-mail уже существует.");
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
         } else {
@@ -78,16 +78,16 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if (userDao.getByName(userWithEncodedPassword.getName()) != null &&
-                user.getPassword().hashCode() == userDao.getByName(userWithEncodedPassword.getName()).getPasswordHashCode()) {
+        if (userDao.getByEmail(userWithEncodedPassword.getEmail()) != null &&
+                user.getPassword().hashCode() == userDao.getByEmail(userWithEncodedPassword.getEmail()).getPasswordHashCode()) {
             result.setSuccess(true);
-            result.setId(userDao.getByName(userWithEncodedPassword.getName()).getId());
+            result.setId(userDao.getByEmail(userWithEncodedPassword.getEmail()).getId());
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.OK).entity(resultStr).build();
         }
 
         result.setSuccess(false);
-        result.setReason("incorrect username or password");
+        result.setReason("Incorrect email or password");
         String resultStr = gson.toJson(result);
         return Response.status(Response.Status.BAD_REQUEST).entity(resultStr).build();
     }

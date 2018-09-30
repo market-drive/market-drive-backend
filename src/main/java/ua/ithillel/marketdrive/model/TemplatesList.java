@@ -19,8 +19,9 @@ public class TemplatesList {
     //@JoinColumn(name = "template_id")
     //@ManyToOne
 
-    //@SerializedName("template_id")
-    private int template_id;
+    @SerializedName("template_id")
+    @Column(name = "template_id")
+    private int templateId;
 
     public TemplatesList() {
     }
@@ -29,7 +30,7 @@ public class TemplatesList {
         this.id = id;
         this.storageId = storageId;
         this.quantity = quantity;
-        this.template_id = templateId;
+        this.templateId = templateId;
     }
 
     public int getId() {
@@ -57,11 +58,11 @@ public class TemplatesList {
     }
 
     public int getTemplate_id() {
-        return template_id;
+        return templateId;
     }
 
     public void setTemplate_id(int template_id) {
-        this.template_id = template_id;
+        this.templateId = template_id;
     }
 
 }

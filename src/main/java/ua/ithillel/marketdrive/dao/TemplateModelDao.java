@@ -39,14 +39,13 @@ public class TemplateModelDao {
 
     public List<TemplatesList> getById(int template_id) {
         try (Session session = sessionFactory.openSession()) {
-            List<TemplatesList> result;
-            result = session.createQuery(
+            return session.createQuery(
                     "select TemplatesList " +
                             "from TemplatesList " +
                             "where TemplatesList.template_id = :template_id", TemplatesList.class)
-                    .setParameter( "template_id", template_id )
+                    .setParameter("template_id", template_id)
                     .list();
-            return result;
         }
     }
+
 }
