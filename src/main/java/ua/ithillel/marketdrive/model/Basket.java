@@ -2,25 +2,36 @@ package ua.ithillel.marketdrive.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Basket {
 
-    @SerializedName("user-id")
+    private int id;
+    @SerializedName("user_id")
     private int userId;
-    @SerializedName("purchace-id")
-    private int purchaceId;
     private Date date = new Date();
-    private Store store;
+    @SerializedName("purchase_id")
+    private int purchaseId;
+    @SerializedName("store_id")
+    private Store storeId;
 
     public Basket() {
     }
 
-    public Basket(int userId, int purchaceId) {
+    public Basket(int id, int userId, Date date, int purchaseId, Store storeId) {
+        this.id = id;
         this.userId = userId;
-        this.purchaceId = purchaceId;
+        this.date = date;
+        this.purchaseId = purchaseId;
+        this.storeId = storeId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -31,14 +42,6 @@ public class Basket {
         this.userId = userId;
     }
 
-    public int getPurchaceId() {
-        return purchaceId;
-    }
-
-    public void setPurchaceId(int purchaceId) {
-        this.purchaceId = purchaceId;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -47,12 +50,19 @@ public class Basket {
         this.date = date;
     }
 
-    public Store getStore() {
-        return store;
+    public int getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
+    public void setPurchaseId(int purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
+    public Store getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
+    }
 }

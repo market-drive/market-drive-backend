@@ -20,6 +20,10 @@
 
         <mapping class="ua.ithillel.marketdrive.model.UserWithEncodedPassword"/>
 
+        <mapping class="ua.ithillel.marketdrive.model.Templates"/>
+
+        <mapping class="ua.ithillel.marketdrive.model.TemplatesList"/>
+
     </session-factory>
 
 </hibernate-configuration>

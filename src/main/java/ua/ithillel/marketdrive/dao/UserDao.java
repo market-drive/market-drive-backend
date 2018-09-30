@@ -60,7 +60,7 @@ public class UserDao {
 
     public List<User> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Student", User.class).list();
+            return session.createQuery("FROM User", User.class).list();
         }
     }
 

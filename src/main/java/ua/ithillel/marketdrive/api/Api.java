@@ -2,11 +2,9 @@ package ua.ithillel.marketdrive.api;
 
 import com.google.gson.Gson;
 import ua.ithillel.marketdrive.dao.StorageDao;
+import ua.ithillel.marketdrive.dao.TemplateModelDao;
 import ua.ithillel.marketdrive.dao.UserDao;
-import ua.ithillel.marketdrive.model.Basket;
-import ua.ithillel.marketdrive.model.Result;
-import ua.ithillel.marketdrive.model.User;
-import ua.ithillel.marketdrive.model.UserWithEncodedPassword;
+import ua.ithillel.marketdrive.model.*;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -56,17 +54,17 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if(userDao.getByName(userWithEncodedPassword.getName()) != null) {
+        if (userDao.getByName(userWithEncodedPassword.getName()) != null) {
             result.setSuccess(false);
             result.setReason("user with the name " + user.getName() + " is already exists");
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
         } else {
-        userDao.insert(userWithEncodedPassword);
-        result.setSuccess(true);
-        result.setId(userWithEncodedPassword.getId());
-        String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.OK).entity(resultStr).build();
+            userDao.insert(userWithEncodedPassword);
+            result.setSuccess(true);
+            result.setId(userWithEncodedPassword.getId());
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.OK).entity(resultStr).build();
         }
     }
 
@@ -80,7 +78,7 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if(userDao.getByName(userWithEncodedPassword.getName()) != null &&
+        if (userDao.getByName(userWithEncodedPassword.getName()) != null &&
                 user.getPassword().hashCode() == userDao.getByName(userWithEncodedPassword.getName()).getPasswordHashCode()) {
             result.setSuccess(true);
             result.setId(userDao.getByName(userWithEncodedPassword.getName()).getId());
@@ -94,17 +92,22 @@ public class Api {
         return Response.status(Response.Status.BAD_REQUEST).entity(resultStr).build();
     }
 
+    @GET
+    @Path("templates_list")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response getTemplatesList() {
+        TemplateModelDao templateModelDao = new TemplateModelDao();
+        String json = gson.toJson(templateModelDao.getAll());
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
+
     @POST
     @Path("template")
-    public Response template(String json) {
-        Basket basket = gson.fromJson(json, Basket.class);
-        //get users in sql
-
-        Result result = new Result();
-        result.setSuccess(true);
-        result.setId(123456);
-        String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.OK).entity(resultStr).build();
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response getTemplate(String json) {
+        TemplateModelDao templateModelDao = new TemplateModelDao();
+        Templates templates = gson.fromJson(json, Templates.class);
+        return Response.status(Response.Status.OK).entity(templateModelDao.getById(templates.getId())).build();
     }
 
 }

@@ -1,5 +1,5 @@
-{"purchace": [ 
-	{ 	
+{"purchace": [
+	{
 		"user-id": 1334466,
 		"purchace-id": 7,
 		"date" : "27.06.2018 14:12:34",
@@ -12,7 +12,7 @@
 			{
 				"product-id" : 30,
 				"quantity" : 1
-			}, 
+			},
 			{
 				"product-id" : 134,
 				"quantity" : 2
@@ -32,7 +32,7 @@
 			{
 				"product-id" : 233,
 				"quantity" : 1
-			}   
+			}
 		]
 	},
 	{
@@ -48,7 +48,7 @@
 			{
 				"product-id" : 99,
 				"quantity" : 1
-			}, 
+			},
 			{
 				"product-id" : 134,
 				"quantity" : 2
@@ -77,7 +77,7 @@
 				"product-id" : 328,
 				"quantity" : 2
 			}
-		] 
+		]
 	},
 
 	{
@@ -93,7 +93,7 @@
 			{
 				"product-id" : 200,
 				"quantity" : 1
-			}, 
+			},
 			{
 				"product-id" : 130,
 				"quantity" : 2
@@ -125,7 +125,7 @@
 			{
 				"product-id" : 391,
 				"quantity" : 1
-			}, 
+			},
 			{
 				"product-id" : 149,
 				"quantity" : 3
@@ -161,7 +161,7 @@
 			{
 				"product-id" : 393,
 				"quantity" : 2
-			}, 
+			},
 			{
 				"product-id" : 76,
 				"quantity" : 1
@@ -199,7 +199,7 @@
 	{
 		"user-id": 1334466,
 		"purchace-id": 1,
-		"date" : "14.06.2018 21:10:17",
+		"date" : "10.06.2018 11:19:11",
 		"store": {
 			"store-id": 325,
 			"store-adress": "г.Днепр, ул. Запорожское шоссе, 5а",
@@ -209,7 +209,7 @@
 			{
 				"product-id" : 49,
 				"quantity" : 2
-			}, 
+			},
 			{
 				"product-id" : 36,
 				"quantity" : 1

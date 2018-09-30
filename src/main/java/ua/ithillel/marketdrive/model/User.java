@@ -1,5 +1,8 @@
 package ua.ithillel.marketdrive.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class User {
 
     private int id;
