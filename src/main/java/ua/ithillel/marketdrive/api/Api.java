@@ -1,6 +1,8 @@
 package ua.ithillel.marketdrive.api;
 
 import com.google.gson.Gson;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import ua.ithillel.marketdrive.dao.StorageDao;
 import ua.ithillel.marketdrive.dao.UserDao;
 import ua.ithillel.marketdrive.model.Basket;
@@ -9,13 +11,24 @@ import ua.ithillel.marketdrive.model.User;
 import ua.ithillel.marketdrive.model.UserWithEncodedPassword;
 
 import javax.servlet.ServletContext;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
 public class Api {
+
+    private static final Logger logger = LogManager.getLogger(Api.class);
+
+    public static void main(String[] args) {
+
+        logger.info("Hello world");
+        logger.info("we are in logger info mode");
+    }
 
     private Gson gson = new Gson();
 
@@ -56,17 +69,17 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if(userDao.getByName(userWithEncodedPassword.getName()) != null) {
+        if (userDao.getByName(userWithEncodedPassword.getName()) != null) {
             result.setSuccess(false);
             result.setReason("user with the name " + user.getName() + " is already exists");
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.CONFLICT).entity(resultStr).build();
         } else {
-        userDao.insert(userWithEncodedPassword);
-        result.setSuccess(true);
-        result.setId(userWithEncodedPassword.getId());
-        String resultStr = gson.toJson(result);
-        return Response.status(Response.Status.OK).entity(resultStr).build();
+            userDao.insert(userWithEncodedPassword);
+            result.setSuccess(true);
+            result.setId(userWithEncodedPassword.getId());
+            String resultStr = gson.toJson(result);
+            return Response.status(Response.Status.OK).entity(resultStr).build();
         }
     }
 
@@ -80,7 +93,7 @@ public class Api {
                 user.getEmail());
         UserDao userDao = new UserDao();
         Result result = new Result();
-        if(userDao.getByName(userWithEncodedPassword.getName()) != null &&
+        if (userDao.getByName(userWithEncodedPassword.getName()) != null &&
                 user.getPassword().hashCode() == userDao.getByName(userWithEncodedPassword.getName()).getPasswordHashCode()) {
             result.setSuccess(true);
             result.setId(userDao.getByName(userWithEncodedPassword.getName()).getId());
