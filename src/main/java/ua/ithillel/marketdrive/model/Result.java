@@ -3,7 +3,16 @@ package ua.ithillel.marketdrive.model;
 public class Result {
     boolean success;
     int id;
+    String name;
     String reason;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setSuccess(boolean success) {
         this.success = success;

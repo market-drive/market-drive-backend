@@ -46,6 +46,8 @@ public class Api {
 
     @POST
     @Path("register")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response register(String json) {
         User user = gson.fromJson(json, User.class);
         UserWithEncodedPassword userWithEncodedPassword = new UserWithEncodedPassword(
@@ -81,6 +83,7 @@ public class Api {
         if (userDao.getByEmail(userWithEncodedPassword.getEmail()) != null &&
                 user.getPassword().hashCode() == userDao.getByEmail(userWithEncodedPassword.getEmail()).getPasswordHashCode()) {
             result.setSuccess(true);
+            result.setName(userDao.getByEmail(userWithEncodedPassword.getEmail()).getName());
             result.setId(userDao.getByEmail(userWithEncodedPassword.getEmail()).getId());
             String resultStr = gson.toJson(result);
             return Response.status(Response.Status.OK).entity(resultStr).build();
